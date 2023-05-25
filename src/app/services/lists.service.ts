@@ -33,4 +33,8 @@ export class ListsService {
   getFeaturedLists(): Observable<any> {
     return this.http.get(`${this.apiUrl}/lists/featured`);
   }
+
+  getListsBySearchTerm(searchTerm: string): Observable<List[]> {
+    return this.http.get<List[]>(`${this.apiUrl}/lists/search?term=${searchTerm}`);
+  }
 }

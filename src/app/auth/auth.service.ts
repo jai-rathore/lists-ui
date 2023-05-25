@@ -1,11 +1,35 @@
+// src/app/services/auth.service.ts
+
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  user$: Observable<User | null>;
+
+  constructor() {
+    const auth = getAuth();
+    this.user$ = new Observable<User | null>(subscriber => {
+      auth.onAuthStateChanged(subscriber);
+    });
+  }
+
+  // Check if user is authenticated
+  isAuthenticated(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const auth = getAuth();
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      }, reject);
+    });
+  }
 
   // Sign up with email and password
   async signUp(email: string, password: string) {

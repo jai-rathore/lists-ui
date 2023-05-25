@@ -1,0 +1,26 @@
+<!-- src/app/register/register.component.html -->
+
+<div class="register-container">
+    <div class="register-row">
+      <div class="register-form">
+        <h2 class="register-title">Register</h2>
+        <form (ngSubmit)="register()">
+          <div class="form-field">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+          </div>
+          <div class="form-field">
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" [(ngModel)]="user.password" name="password" required>
+          </div>
+          <div class="form-submit">
+            <button type="submit">Register</button>
+          </div>
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+  

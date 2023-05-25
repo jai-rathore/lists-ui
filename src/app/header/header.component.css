@@ -1,0 +1,32 @@
+/* src/app/header/header.component.scss */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rounded-circle {
+    border-radius: 50%;
+  }
+  
+  .btn {
+    margin-left: 10px;
+  }
+  
+  .fa-bars {
+    cursor: pointer;
+  }
+  

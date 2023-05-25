@@ -9,8 +9,10 @@ import { initializeApp } from 'firebase/app';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { CreateListComponent } from './create-list/create-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeaturedListsComponent } from './home/featured-lists/featured-lists.component';
+import { AuthModule } from './auth/auth.module';
+import { HeaderComponent } from './header/header.component';
 
 initializeApp(environment.firebase);
 
@@ -19,14 +21,17 @@ initializeApp(environment.firebase);
     AppComponent,
     HomeComponent,
     CreateListComponent,
-    FeaturedListsComponent
+    FeaturedListsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

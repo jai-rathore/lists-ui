@@ -1,0 +1,23 @@
+<!-- src/app/auth/auth.component.html -->
+
+<div class="auth-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" [(ngModel)]="user.password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class="auth-links">
+    <a routerLink="/register">Create an account</a>
+    <a routerLink="/forgot-password">Forgot password?</a>
+  </div>
+</div>
