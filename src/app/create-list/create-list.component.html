@@ -1,0 +1,26 @@
+<div class="create-list-container">
+  <h2>Create a New List</h2>
+  <form [formGroup]="createListForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="list-name">List Name</label>
+      <input type="text" id="list-name" formControlName="name" />
+    </div>
+    <div>
+      <label for="list-description">List Description</label>
+      <input type="text" id="list-description" formControlName="description" />
+    </div>
+    <div>
+      <label for="list-public">Public List</label>
+      <input type="checkbox" id="list-public" formControlName="public" />
+    </div>
+    <div formArrayName="listItems">
+      <h3>List Items</h3>
+      <button type="button" (click)="addListItem()">Add List Item</button>
+      <div *ngFor="let listItem of listItems.controls; let i = index">
+        <input type="text" [formControlName]="i" />
+        <button type="button" (click)="removeListItem(i)">Remove</button>
+      </div>
+    </div>
+    <button type="submit" [disabled]="createListForm.invalid">Create List</button>
+  </form>
+</div>
