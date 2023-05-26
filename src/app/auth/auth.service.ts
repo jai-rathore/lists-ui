@@ -1,8 +1,9 @@
 // src/app/services/auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, sendPasswordResetEmail } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   user$: Observable<User | null>;
 
-  constructor() {
+  constructor(private router: Router) {
     const auth = getAuth();
     this.user$ = new Observable<User | null>(subscriber => {
       auth.onAuthStateChanged(subscriber);
@@ -58,7 +59,20 @@ export class AuthService {
     try {
       const auth = getAuth();
       await signOut(auth);
+      this.router.navigate(['/auth']);
     } catch (error) {
+      throw error;
+    }
+  }
+
+  // Request password reset
+  async resetPassword(email: string) {
+    const auth = getAuth();
+    try {
+      await sendPasswordResetEmail(auth, email);
+      console.log('Password reset email sent');
+    } catch (error) {
+      console.error('Error:', error);
       throw error;
     }
   }

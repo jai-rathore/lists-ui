@@ -12,7 +12,6 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnDestroy {
-  toggleMenu = false;
   user: User | null = null;
   private userSub: Subscription;
 
@@ -21,7 +20,7 @@ export class HeaderComponent implements OnDestroy {
   }
 
   logout() {
-    this.authService.signOut().then(() => this.router.navigate(['/login']));
+    this.authService.signOut();
   }
 
   ngOnDestroy() {

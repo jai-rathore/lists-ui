@@ -29,4 +29,13 @@
   .fa-bars {
     cursor: pointer;
   }
+
+  .right-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile, .btn {
+    margin-left: 10px;
+  }
   

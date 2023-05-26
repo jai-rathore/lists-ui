@@ -1,14 +1,15 @@
 <!-- src/app/header/header.component.html -->
 
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/">List App</a>
-  
-    <div *ngIf="authService.user$ | async as user; else guest">
-      <img [src]="user.photoURL" alt="User avatar" class="rounded-circle" width="30">
-      <button class="btn btn-outline-danger btn-sm ml-2" (click)="logout()">Logout</button>
+  <a class="navbar-brand" routerLink="/">List App</a>
+  <div class="right-nav">
+    <div class="profile" *ngIf="authService.user$ | async as user; else guest">
+      <div class="dropdown-menu">
+        <button class="btn btn-outline-danger btn-sm ml-2" (click)="logout()">Logout</button>
+      </div>
     </div>
-  
     <ng-template #guest>
-      <button class="btn btn-outline-success btn-sm" routerLink="/login">Login</button>
+      <button class="btn btn-outline-success btn-sm" routerLink="/auth">Login</button>
     </ng-template>
-  </nav>
+  </div>
+</nav>
