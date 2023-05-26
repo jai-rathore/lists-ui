@@ -15,7 +15,7 @@ export class HeaderComponent implements OnDestroy {
   user: User | null = null;
   private userSub: Subscription;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService) {
     this.userSub = this.authService.user$.subscribe(user => this.user = user);
   }
 

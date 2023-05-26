@@ -64,3 +64,19 @@
   .auth-links a:hover {
     text-decoration: underline;
   }
+
+  .btn-google {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4285f4;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .btn-google:hover {
+    background-color: #2d6be2;
+  }
+  

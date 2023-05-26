@@ -23,8 +23,16 @@ export class AuthComponent {
       success => { 
         console.log('Logged in successfully')
         this.router.navigate(['/home'])},
-      error => console.log('Error logging in:', error)
+        error => console.log('Error logging in:', error)
     );
+  }
+
+  async googleSignIn() {
+    try {
+      await this.authService.signInWithGoogle();
+    } catch (error) {
+      console.log('Error logging in:', error);
+    }
   }
 
   signup(): void {

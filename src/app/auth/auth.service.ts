@@ -1,7 +1,7 @@
 // src/app/services/auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -53,6 +53,18 @@ export class AuthService {
       throw error;
     }
   }
+
+  // Sign in with Google
+async signInWithGoogle() {
+  try {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
 
   // Sign out
   async signOut() {

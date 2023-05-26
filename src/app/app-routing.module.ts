@@ -8,13 +8,12 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'home', redirectTo: '' },
   { path: 'auth', component: AuthComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'password-reset', component: PasswordResetComponent},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', redirectTo: '' },
   { path: 'create-list', component: CreateListComponent, canActivate: [AuthGuard] },
-
 ];
 
 @NgModule({
