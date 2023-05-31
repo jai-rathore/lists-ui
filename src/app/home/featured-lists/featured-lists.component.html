@@ -1,7 +1,7 @@
 <!-- src/app/home/featured-lists/featured-lists.component.html -->
 
 <div class="featured-lists-container">
-    <div *ngFor="let list of featuredLists" class="featured-list-item">
+    <div *ngFor="let list of featuredLists" class="featured-list-item" (click)="goToListDetail(list.listDetails.id)">
         <h3>{{ list.listDetails.title }}</h3>
         <p>{{ list.listDetails.description }}</p>
     </div>

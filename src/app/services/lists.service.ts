@@ -7,6 +7,7 @@ export interface ListItem {
 }
 
 export interface ListDetails {
+  id: number;
   description: string;
   isPublic: boolean;
   title: string;
@@ -35,6 +36,14 @@ export class ListsService {
   }
 
   getListsBySearchTerm(searchTerm: string): Observable<List[]> {
+    return this.http.get<List[]>(`${this.apiUrl}/lists/search?term=${searchTerm}`);
+  }
+
+  getListDetails(listId: number): Observable<List> {
+    return this.http.get<List>(`${this.apiUrl}/lists/${listId}`);
+  }
+
+  searchLists(searchTerm: string): Observable<List[]> {
     return this.http.get<List[]>(`${this.apiUrl}/lists/search?term=${searchTerm}`);
   }
 }

@@ -1,0 +1,11 @@
+<div *ngIf="list" class="container">
+    <h2>{{ list.listDetails.title }}</h2>
+    <p>{{ list.listDetails.description }}</p>
+  
+    <ul>
+      <li *ngFor="let item of list.listItems">
+        {{ item.content }}
+      </li>
+    </ul>
+  </div>
+  

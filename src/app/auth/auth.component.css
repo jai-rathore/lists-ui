@@ -79,4 +79,15 @@
   .btn-google:hover {
     background-color: #2d6be2;
   }
+
+  .error-message {
+    color: red;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    margin-top: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+  }
+  
   

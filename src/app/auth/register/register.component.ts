@@ -12,6 +12,7 @@ export class RegisterComponent {
     email: '',
     password: ''
   };
+  isError = false;
   errorMessage = ''
 
   constructor(
@@ -23,6 +24,7 @@ export class RegisterComponent {
     this.authService.signUp(this.user.email, this.user.password).then(
       success => this.router.navigate(['/home']), 
       error => {
+        this.isError = true
         console.log('Error registering:', error)
         this.errorMessage = error.message
       }

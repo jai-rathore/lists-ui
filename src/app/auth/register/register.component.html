@@ -16,6 +16,9 @@
           <div class="form-submit">
             <button type="submit">Register</button>
           </div>
+          <div class="auth-links">
+            <p>Already have an account? <a routerLink="/auth">Log In</a></p>
+          </div>
           <div *ngIf="errorMessage" class="error-message">
             {{ errorMessage }}
           </div>

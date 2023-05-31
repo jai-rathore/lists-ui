@@ -3,10 +3,12 @@
       <button class="create-list-btn" (click)="createList()">Create List</button>
     </div>
     <div class="search-container">
-      <input class="search-bar" type="text" placeholder="Search lists..." />
+      <input class="search-bar" type="text" placeholder="Search lists..."   [(ngModel)]="keyword" (input)="keyword.length > 0 && search(keyword)" />
     </div>
     <div class="featured-lists-section">
-      <h2 class="featured-lists-title">Featured Lists!</h2>
-      <app-featured-lists></app-featured-lists>
+      <h2 class="featured-lists-title" *ngIf="!searching">Featured Lists!</h2>
+      <h2 class="search-results-title" *ngIf="searching">Search Results</h2>
+      <app-featured-lists *ngIf="!searching"></app-featured-lists>
+      <app-featured-lists [featuredLists]="searchResults" *ngIf="searching"></app-featured-lists>
     </div>
   </div>

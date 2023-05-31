@@ -14,6 +14,8 @@ export class AuthComponent {
     email: '',
     password: ''
   };
+  isError = false;
+  errorMessage = ''
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -21,25 +23,43 @@ export class AuthComponent {
     this.authService.signIn(this.user.email, this.user.password).then
     ( 
       success => { 
-        console.log('Logged in successfully')
-        this.router.navigate(['/home'])},
-        error => console.log('Error logging in:', error)
+        console.log('Logged in successfully');
+        this.router.navigate(['/home']);
+      },
+        error => { 
+        this.isError = true;
+        console.log('Error logging in:', error);
+        this.errorMessage = error.message;
+      }
     );
   }
 
   async googleSignIn() {
-    try {
-      await this.authService.signInWithGoogle();
-    } catch (error) {
-      console.log('Error logging in:', error);
-    }
+      await this.authService.signInWithGoogle().then(
+        success => {
+          console.log('Logged in with Google successfully');
+          this.router.navigate(['/home']);
+        },
+        error => {
+          this.isError = true;
+          console.log('Error logging in with Google:', error);
+          this.errorMessage = error.message;
+        }
+      );
   }
 
   signup(): void {
     this.authService.signUp(this.user.email, this.user.password).then
     ( 
-      success => console.log('Signed up successfully'),
-      error => console.log('Error signing up:', error)
+      success => {
+        console.log('Signed up successfully');
+        this.router.navigate(['/home']);
+      },
+      error => {
+        this.isError = true;
+        console.log('Error signing up:', error);
+        this.errorMessage = error.message;
+      }
     );
   }
 
@@ -47,7 +67,10 @@ export class AuthComponent {
     this.authService.signOut().then
     ( 
       success => console.log('Logged out successfully'),
-      error => console.log('Error logging out:', error)
+      error => {
+        this.isError = true;
+        console.log('Error logging out:', error)
+      }
     );
   }
 }

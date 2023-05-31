@@ -42,6 +42,7 @@ export class CreateListComponent implements OnInit {
 
       const payload: List = {
         listDetails: {
+          id: 0,
           description: formData.description,
           isPublic: formData.public,
           title: formData.name,

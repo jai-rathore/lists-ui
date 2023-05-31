@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeaturedListsComponent } from './home/featured-lists/featured-lists.component';
 import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
+import { ListDetailComponent } from './list-detail/list-detail.component';
 
 initializeApp(environment.firebase);
 
@@ -22,7 +23,8 @@ initializeApp(environment.firebase);
     HomeComponent,
     CreateListComponent,
     FeaturedListsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListDetailComponent,
   ],
   imports: [
     BrowserModule,
