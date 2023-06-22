@@ -1,15 +1,22 @@
-<!-- src/app/header/header.component.html -->
-
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" routerLink="/">List App</a>
   <div class="right-nav">
-    <div class="profile" *ngIf="authService.user$ | async as user; else guest">
-      <div class="dropdown-menu">
-        <button class="btn btn-outline-danger btn-sm ml-2" (click)="logout()">Logout</button>
+    <div *ngIf="authService.user$ | async as user; else guest">
+      <div class="menu" (click)="menuOpen = !menuOpen">
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="dropdown-menu" [class.show]="menuOpen">
+        <button class="dropdown-item" (click)="navigateToProfile()">Profile</button>
+        <button class="dropdown-item" (click)="logout()">Logout</button>
       </div>
     </div>
     <ng-template #guest>
-      <button class="btn btn-outline-success btn-sm" routerLink="/auth">Login</button>
+      <div class="menu" (click)="menuOpen = !menuOpen">
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="dropdown-menu" [class.show]="menuOpen">
+        <button class="dropdown-item" (click)="login()">Login</button>
+      </div>
     </ng-template>
   </div>
 </nav>

@@ -1,7 +1,7 @@
 // src/app/services/auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -47,6 +47,7 @@ export class AuthService {
   async signIn(email: string, password: string) {
     try {
       const auth = getAuth();
+      await signOut(auth); 
       const result = await signInWithEmailAndPassword(auth, email, password);
       return result;
     } catch (error) {
@@ -58,6 +59,7 @@ export class AuthService {
 async signInWithGoogle() {
   try {
     const auth = getAuth();
+    await signOut(auth); 
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     return result;
@@ -87,5 +89,34 @@ async signInWithGoogle() {
       console.error('Error:', error);
       throw error;
     }
+  }
+
+  // Update display name
+  async updateProfile(displayName: string) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        await updateProfile(user, { displayName });
+        console.log('Profile updated');
+      } catch (error) {
+        console.error('Error:', error);
+        throw error;
+      }
+    }
+  }
+
+
+  // Get current user
+  getCurrentUser(): User | null {
+    const auth = getAuth();
+    return auth.currentUser;
+  }
+
+  // Get current user ID
+  getCurrentUserId(): string | null {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    return user ? user.uid : null;
   }
 }

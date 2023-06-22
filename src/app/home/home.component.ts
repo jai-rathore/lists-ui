@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { List, ListsService } from '../services/lists.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,14 @@ export class HomeComponent {
   searchResults!: List[];
   searching = false;
   keyword: string = '';
-  constructor(private router: Router, private listsService: ListsService) {}
+  constructor(private router: Router, private listsService: ListsService, public authService: AuthService) {}
+
+  getFirstName(displayName: string | null): string {
+    if (displayName) {
+      return displayName.split(' ')[0];
+    }
+    return 'User';
+  }
 
   createList() {
     this.router.navigate(['/create-list']);

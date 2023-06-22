@@ -7,11 +7,13 @@ import { PasswordResetComponent } from './auth/password-reset/password-reset.com
 import { HomeComponent } from './home/home.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'password-reset', component: PasswordResetComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'home', redirectTo: '' },
   { path: 'create-list', component: CreateListComponent, canActivate: [AuthGuard] },

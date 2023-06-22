@@ -14,6 +14,7 @@ import { FeaturedListsComponent } from './home/featured-lists/featured-lists.com
 import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 initializeApp(environment.firebase);
 
@@ -25,6 +26,7 @@ initializeApp(environment.firebase);
     FeaturedListsComponent,
     HeaderComponent,
     ListDetailComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

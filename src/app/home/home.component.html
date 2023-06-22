@@ -1,4 +1,7 @@
 <div class="home-container">
+  <div class="welcome-msg" *ngIf="authService.getCurrentUser() as user">
+    <h2>Welcome, {{ getFirstName(user.displayName) }}!</h2>
+</div>
     <div class="create-list-container">
       <button class="create-list-btn" (click)="createList()">Create List</button>
     </div>
